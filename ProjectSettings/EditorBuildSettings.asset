@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Presentation/Scenes/BuildScene.unity
+    guid: 3427bc7b62ca7bf449c8c34897cc0954
+  - enabled: 1
     path: Assets/_Presentation/Scenes/CinemachineCameraDemo.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/_Presentation/Scenes/DialogueSystem.unity
+    guid: adcff8b1741ce8845b738f82f1567187
+  - enabled: 1
+    path: Assets/_Presentation/Scenes/PlayerMovement.unity
+    guid: 06a11dbcc61101644ae16ff228f3928d
+  - enabled: 1
+    path: Assets/_Presentation/Scenes/useitem.unity
+    guid: d07ab8751d53b874da56ecc0718c71d9
   m_configObjects: {}
