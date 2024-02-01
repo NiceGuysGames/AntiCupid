@@ -14,8 +14,8 @@
 - Убедиться, что у вас установлен Git (Git Bash) !!!
 1. Склонировать репозиторий
 
-    ```
     Написать в cmd (powershell, git bash, на выбор)
+    ```
     git clone https://github.com/NiceGuysGames/AntiCupid.git
     ```
 2. Перейти в директорию 
@@ -54,11 +54,11 @@
     git add .
     git commit -m "ваше сообщение"
      ```
-    При первом Push на ветке, в которой вы работаете
+При первом Push на ветке, в которой вы работаете
     ```
     git push -u origin feature/название-ветки
      ```
-    При последующих
+При последующих
     ```
     git push
     ```
