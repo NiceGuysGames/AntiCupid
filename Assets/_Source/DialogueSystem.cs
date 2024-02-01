@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] private string _personName;
-    [SerializeField] private Text _textContent;
-    [SerializeField] private Text _nameText;
-    [SerializeField] private string[] _lines;
+    [SerializeField] private Image PersonAvatar;
+    [SerializeField] private Text _name;
+    [SerializeField] private Text _content;
+    [SerializeField] private GameObject _dialogueBody;
     [SerializeField] private float _textSpeed;
-    [SerializeField] private GameObject _body;
-    private int index;
+    
+    //[SerializeField] private List<Dialogue> _dialogue = new List<Dialogue>();
+    [SerializeField] private Dialogue _dialogue;
+    
+    private int _index;
     
     private void Start()
     {
@@ -22,47 +25,48 @@ public class DialogueSystem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (_textContent.text == _lines[index])
+            if (_content.text == _dialogue.Content[_index])
             {
                 NextLine();
             }
             else
             {
                 StopAllCoroutines();
-                _textContent.text = _lines[index];
+                _content.text = _dialogue.Content[_index];
             }
         }
     }
 
     public void StartDialogue()
     {
-        index = 0;
-        _textContent.text = string.Empty;
-        _nameText.text = _personName;
-        _body.SetActive(true);
+        _index = 0;
+        _content.text = string.Empty;
+        PersonAvatar.sprite = _dialogue.PersonAvatar;
+        _name.text = _dialogue.PersonName;
+        _dialogueBody.SetActive(true);
         StartCoroutine(TypeLine());
     }
     
     private IEnumerator TypeLine()
     {
-        foreach (char c in _lines[index].ToCharArray())
+        foreach (char c in _dialogue.Content[_index].ToCharArray())
         {
-            _textContent.text += c;
+            _content.text += c;
             yield return new WaitForSeconds(_textSpeed);
         }
     }
     
     private void NextLine()
     {
-        if (index < _lines.Length - 1)
+        if (_index < _dialogue.Content.Length - 1)
         {
-            index++;
-            _textContent.text = string.Empty;
+            _index++;
+            _content.text = string.Empty;
             StartCoroutine(TypeLine());
         }
         else
         {
-            gameObject.SetActive(false);
+            _dialogueBody.SetActive(false);
         }
     }
 }

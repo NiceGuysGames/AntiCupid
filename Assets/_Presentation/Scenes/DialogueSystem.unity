@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &11827188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -266,7 +266,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 602321828}
-  - component: {fileID: 602321829}
   m_Layer: 5
   m_Name: Dialogue
   m_TagString: Untagged
@@ -294,28 +293,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &602321829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602321827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43878777298bf404d88056a60665d30f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _personName: Alex
-  _textContent: {fileID: 7421584001570352910}
-  _nameText: {fileID: 7996845941400988223}
-  _lines:
-  - Hello
-  - World
-  - testtesttestte sttesttesttesttesttesttes ttesttesttesttesttesttes ttesttestte
-    sttesttesttesttesttestte sttesttesttesttesttest
-  _textSpeed: 0.05
-  _body: {fileID: 11827187}
 --- !u!1 &652670311
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +398,56 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1213268471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1213268473}
+  - component: {fileID: 1213268472}
+  m_Layer: 0
+  m_Name: DialogueSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1213268472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213268471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43878777298bf404d88056a60665d30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PersonAvatar: {fileID: 7169210011663280927}
+  _name: {fileID: 7996845941400988223}
+  _content: {fileID: 7421584001570352910}
+  _dialogueBody: {fileID: 11827187}
+  _textSpeed: 0.1
+  _dialogue: {fileID: 11400000, guid: 1aeb6a893cf8a37459e8407f22583560, type: 2}
+--- !u!4 &1213268473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213268471}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.60822934, y: 0.7176307, z: 2553.8416}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1427373067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1401,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1621,3 +1648,4 @@ SceneRoots:
   - {fileID: 295160488}
   - {fileID: 5337878045145485854}
   - {fileID: 1924878915}
+  - {fileID: 1213268473}
