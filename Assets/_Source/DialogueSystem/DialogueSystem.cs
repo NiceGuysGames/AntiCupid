@@ -11,34 +11,31 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] private GameObject _dialogueBody;
     [SerializeField] private float _textSpeed;
     
-    //[SerializeField] private List<Dialogue> _dialogue = new List<Dialogue>();
-    [SerializeField] private Dialogue _dialogue;
-    
     private int _index;
-    
-    private void Start()
-    {
-        StartDialogue();
-    }
+    private DialogueObject _dialogue;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) // TODO: InputListener
         {
-            if (_content.text == _dialogue.Content[_index])
+            if (_dialogue != null)
             {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                _content.text = _dialogue.Content[_index];
+                if (_content.text == _dialogue.Content[_index])
+                {
+                    NextLine();
+                }
+                else
+                {
+                    StopAllCoroutines();
+                    _content.text = _dialogue.Content[_index];
+                }
             }
         }
     }
 
-    public void StartDialogue()
+    public void StartDialogue(DialogueObject dialogue)
     {
+        _dialogue = dialogue;
         _index = 0;
         _content.text = string.Empty;
         PersonAvatar.sprite = _dialogue.PersonAvatar;
@@ -66,6 +63,7 @@ public class DialogueSystem : MonoBehaviour
         }
         else
         {
+            _dialogue = null;
             _dialogueBody.SetActive(false);
         }
     }

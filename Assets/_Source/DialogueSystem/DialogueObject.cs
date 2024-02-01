@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Dialogue")]
-public class Dialogue : ScriptableObject
+public class DialogueObject : ScriptableObject
 {
     public string PersonName = "Name";
     public Sprite PersonAvatar;
