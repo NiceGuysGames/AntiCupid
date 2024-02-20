@@ -5,31 +5,45 @@ using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] private Image PersonAvatar;
-    [SerializeField] private Text _name;
-    [SerializeField] private Text _content;
-    [SerializeField] private GameObject _dialogueBody;
-    [SerializeField] private float _textSpeed;
+    [SerializeField, Tooltip("Перетащите сюда поле с картинкой персонажа")]
+    private Image PersonAvatar;
+    [SerializeField, Tooltip("Перетащите сюда поле текста с именем")]
+    private Text _name;
+    [SerializeField, Tooltip("Перетащите сюда поле текста, где находится повествование")]
+    private Text _content;
+    [SerializeField, Tooltip("Перетащите сюда объект, который объединяет все объекты диалогового окна")]
+    private GameObject _dialogueBody;
+    [SerializeField, Tooltip("Задержка между появлением каждой новой буквы")]
+    private float _textSpeed;
     
     private int _index;
     private DialogueObject _dialogue;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // TODO: InputListener
+        CheckActivate();
+    }
+
+    private void CheckActivate()
+    {
+        if (!Input.GetMouseButtonDown(0))
         {
-            if (_dialogue != null)
-            {
-                if (_content.text == _dialogue.Content[_index])
-                {
-                    NextLine();
-                }
-                else
-                {
-                    StopAllCoroutines();
-                    _content.text = _dialogue.Content[_index];
-                }
-            }
+            return;
+        }
+        
+        if (!_dialogue)
+        {
+            return;
+        }
+        
+        if (_content.text == _dialogue.Content[_index])
+        {
+            NextLine();
+        }
+        else
+        {
+            StopAllCoroutines();
+            _content.text = _dialogue.Content[_index];
         }
     }
 
@@ -38,7 +52,7 @@ public class DialogueSystem : MonoBehaviour
         _dialogue = dialogue;
         _index = 0;
         _content.text = string.Empty;
-        PersonAvatar.sprite = _dialogue.PersonAvatar;
+        PersonAvatar.sprite = _dialogue.PersonAvatarAnimation[0];
         _name.text = _dialogue.PersonName;
         _dialogueBody.SetActive(true);
         StartCoroutine(TypeLine());
@@ -49,8 +63,15 @@ public class DialogueSystem : MonoBehaviour
         foreach (char c in _dialogue.Content[_index].ToCharArray())
         {
             _content.text += c;
+            PersonAvatar.sprite = GetRandomSprite(_dialogue.PersonAvatarAnimation);
             yield return new WaitForSeconds(_textSpeed);
         }
+    }
+    
+    private Sprite GetRandomSprite(List<Sprite> list)
+    {
+        int index = Random.Range(0, list.Count);
+        return list[index];
     }
     
     private void NextLine()
