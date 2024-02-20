@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TransitionOnLevel : MonoBehaviour
 {
+    [SerializeField] private Animator _animator;
     [field: SerializeField] public GameObject player { get; set; }
     [field: SerializeField] public Transform teleportDestination { get; set; }
     [field: SerializeField] public float teleportCooldown = 1.0f;
@@ -42,6 +43,7 @@ public class TransitionOnLevel : MonoBehaviour
             {
                 if (IsPlayerInTrigger())
                 {
+                    _animator.Play("Jump");
                     player.transform.position = teleportDestination.position;
                     _lastTeleportTime = Time.time;
                 }
