@@ -27,6 +27,12 @@ public class PlayerMover : MonoBehaviour
 				rb.velocity = new Vector2(_movementVector.x * movementSpeed * runningSpeedCoefficent, rb.velocity.y);
 
 			}
+			else if (Input.GetKey(KeyCode.LeftControl))
+			{
+				rb.velocity = new Vector2(_movementVector.x * movementSpeed / 2, rb.velocity.y);
+				// тут анимация ходьбы полуприсев
+
+			}
 			else
 			{
 				rb.velocity = new Vector2(_movementVector.x * movementSpeed, rb.velocity.y);
