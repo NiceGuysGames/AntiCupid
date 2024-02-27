@@ -853,6 +853,10 @@ PrefabInstance:
       value: Jump
       objectReference: {fileID: 0}
     - target: {fileID: 1564430156078255209, guid: 8e78dc84ea74b3746b18cac85565a819, type: 3}
+      propertyPath: layer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564430156078255209, guid: 8e78dc84ea74b3746b18cac85565a819, type: 3}
       propertyPath: <player>k__BackingField
       value: 
       objectReference: {fileID: 1389806979}
