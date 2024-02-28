@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "AntiCupid.sln"
+    "dotnet.defaultSolution": "AntiCupid.sln",
+    "dotnet.preferCSharpExtension": true
 }

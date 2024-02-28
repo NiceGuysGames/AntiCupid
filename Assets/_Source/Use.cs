@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Use : MonoBehaviour
 {
-
+    [SerializeField] private Animator _animator;
+    
     private bool isInRange1;
 
 
@@ -58,6 +59,7 @@ public class Use : MonoBehaviour
 
         if (isInRange1 && Input.GetKeyDown(KeyCode.E))
         {
+            _animator.Play("PickUp");
             Window.SetActive(true);
         }
         if (Window.activeInHierarchy && Input.GetMouseButton(0))
