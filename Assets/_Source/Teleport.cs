@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class Teleport
 {
-    private GameObject _player { get; set; }
-    private Transform _teleportDestination { get; set; }
+    private Animator _animator;
+    private GameObject _player;
+    private Transform _teleportDestination;
     private float _teleportCooldown = 1.0f;
     public bool Triggered { get; set; }
     private LayerMask _layer;
     private float _lastTeleportTime = 0.0f;
-    public Teleport(GameObject player, Transform teleportDestination, float teleportCooldown, bool triggered, LayerMask layer)
+    public Teleport(GameObject player, Transform teleportDestination, float teleportCooldown, bool triggered, LayerMask layer, Animator animator)
     {
         _player = player;
         _teleportDestination = teleportDestination;
         _teleportCooldown = teleportCooldown;
         Triggered = triggered;
         _layer = layer;
+        _animator = animator;
     }
 
 
@@ -29,6 +31,7 @@ public class Teleport
             {
                 if (IsPlayerInTrigger(transform))
                 {
+                    _animator.Play("Jump");
                     _player.transform.position = _teleportDestination.position;
                     _lastTeleportTime = Time.time;
                 }
