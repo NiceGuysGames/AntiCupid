@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,6 +11,8 @@ public class PlayerDetector : MonoBehaviour
     [Range(0, 360)] [SerializeField] private float angle;
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obsMask;
+    public static Action action;
+    public static Action UnFill;
     private  bool _canSeePlayer; 
     public GameObject Player { get; private set; }
 
@@ -16,9 +20,7 @@ public class PlayerDetector : MonoBehaviour
 
     void Update()
     {
-        if(_canSeePlayer)
-            Debug.Log("Detect player");
-       
+        
         FieldOfViewCheck();
     }
     
@@ -58,6 +60,15 @@ public class PlayerDetector : MonoBehaviour
     
     public void SeePlayer(bool see, GameObject player = null)
     {
+        if (!_canSeePlayer && see)
+        {
+            action?.Invoke();
+        }
+
+        if (_canSeePlayer && !see)
+        {
+            UnFill?.Invoke();
+        }
         _canSeePlayer = see;
         
         
