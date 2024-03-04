@@ -43,7 +43,7 @@ public class TransitionOnLevel : MonoBehaviour
             {
                 if (IsPlayerInTrigger())
                 {
-                    _animator.Play("Jump");
+                    AnimationController.ChangeAnimation("Jump", _animator);
                     player.transform.position = teleportDestination.position;
                     _lastTeleportTime = Time.time;
                 }
