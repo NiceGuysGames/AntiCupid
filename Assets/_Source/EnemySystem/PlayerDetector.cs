@@ -11,9 +11,9 @@ public class PlayerDetector : MonoBehaviour
     [Range(0, 360)] [SerializeField] private float angle;
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obsMask;
-    public static Action action;
-    public static Action UnFill;
-    private  bool _canSeePlayer; 
+    public  Action Fill;
+    public  Action UnFill;
+    public  bool _canSeePlayer;
     public GameObject Player { get; private set; }
 
    
@@ -49,10 +49,7 @@ public class PlayerDetector : MonoBehaviour
                 SeePlayer(false);
 
         }
-        /*else if (_canSeePlayer)
-        {
-            SeePlayer(false);
-        }*/
+        
     }
 
 
@@ -62,14 +59,15 @@ public class PlayerDetector : MonoBehaviour
     {
         if (!_canSeePlayer && see)
         {
-            action?.Invoke();
+            _canSeePlayer = see;
+            Fill?.Invoke();
         }
 
-        if (_canSeePlayer && !see)
+        else if (_canSeePlayer && !see)
         {
+            _canSeePlayer = see;
             UnFill?.Invoke();
         }
-        _canSeePlayer = see;
         
         
         Player = player;
