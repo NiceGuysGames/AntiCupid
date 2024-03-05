@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 public class PlayerMover : MonoBehaviour
 {
+	[SerializeField] private Animator _animator;
 	[SerializeField] private Rigidbody2D rb;
 	[SerializeField] private float movementSpeed = 0.6f;
 	[SerializeField] private float runningSpeedCoefficent = 1.5f;
@@ -38,7 +39,7 @@ public class PlayerMover : MonoBehaviour
 			if (Input.GetKey(KeyCode.LeftShift))
 			{
 				rb.velocity = new Vector2(_movementVector.x * movementSpeed * runningSpeedCoefficent, rb.velocity.y);
-
+				_animator.Play("Run");
 			}
 			else if (Input.GetKey(KeyCode.LeftControl))
 			{
@@ -49,7 +50,7 @@ public class PlayerMover : MonoBehaviour
 			else
 			{
 				rb.velocity = new Vector2(_movementVector.x * movementSpeed, rb.velocity.y);
-
+				_animator.Play("Walk");
 			}
 
 		}
@@ -58,12 +59,16 @@ public class PlayerMover : MonoBehaviour
 			IsMoving = false;
 			rb.velocity = new Vector2(0, rb.velocity.y);
 
+
 		}
 
 		if (Input.GetKeyDown(KeyCode.LeftControl))
 		{
 			Crouch();
 			// тут приседание на месте
+
+			_animator.Play("Idle");
+
 		}
 
 		if (Input.GetKeyUp(KeyCode.LeftControl))
