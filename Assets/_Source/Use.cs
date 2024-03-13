@@ -59,7 +59,7 @@ public class Use : MonoBehaviour
 
         if (isInRange1 && Input.GetKeyDown(KeyCode.E))
         {
-            _animator.Play("PickUp");
+            AnimationController.ChangeAnimation("PickUp", _animator);
             Window.SetActive(true);
         }
         if (Window.activeInHierarchy && Input.GetMouseButton(0))
