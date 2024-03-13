@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TranstionTrigger : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator _animator;
     [field: SerializeField] public GameObject Player { get; set; }
     [field: SerializeField] private Transform teleportDestination;
     [field: SerializeField] private float teleportCooldown = 1.0f;
@@ -20,7 +20,7 @@ public class TranstionTrigger : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        _teleport = new Teleport(Player, teleportDestination, teleportCooldown, triggered, layer, animator);
+        _teleport = new Teleport(Player, teleportDestination, teleportCooldown, triggered, layer, _animator);
     }
 
     private void OnTriggerEnter2D(Collider2D playerl)

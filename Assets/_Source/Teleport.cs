@@ -31,7 +31,7 @@ public class Teleport
             {
                 if (IsPlayerInTrigger(transform))
                 {
-                    _animator.Play("Jump");
+                    AnimationController.ChangeAnimation("Jump", _animator);
                     _player.transform.position = _teleportDestination.position;
                     _lastTeleportTime = Time.time;
                 }
