@@ -187,6 +187,8 @@ MonoBehaviour:
   rb: {fileID: 37365435}
   movementSpeed: 6
   runningSpeedCoefficent: 1.5
+  _capsuleCollider: {fileID: 37365437}
+  crouchingCoefficent: 0.8
 --- !u!70 &37365437
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

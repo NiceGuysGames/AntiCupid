@@ -44,8 +44,7 @@ public class PlayerMover : MonoBehaviour
 			else if (Input.GetKey(KeyCode.LeftControl))
 			{
 				rb.velocity = new Vector2(_movementVector.x * movementSpeed / 2, rb.velocity.y);
-				// тут анимация ходьбы полуприсев
-
+				_animator.Play("Crouching");
 			}
 			else
 			{
