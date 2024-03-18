@@ -39,18 +39,17 @@ public class PlayerMover : MonoBehaviour
 			if (Input.GetKey(KeyCode.LeftShift))
 			{
 				rb.velocity = new Vector2(_movementVector.x * movementSpeed * runningSpeedCoefficent, rb.velocity.y);
-				_animator.Play("Run");
+				AnimationController.ChangeAnimation("Run", _animator);
 			}
 			else if (Input.GetKey(KeyCode.LeftControl))
 			{
 				rb.velocity = new Vector2(_movementVector.x * movementSpeed / 2, rb.velocity.y);
-				// тут анимация ходьбы полуприсев
-
+				AnimationController.ChangeAnimation("Crouching", _animator);
 			}
 			else
 			{
 				rb.velocity = new Vector2(_movementVector.x * movementSpeed, rb.velocity.y);
-				_animator.Play("Walk");
+				AnimationController.ChangeAnimation("Walk", _animator);
 			}
 
 		}
@@ -58,17 +57,20 @@ public class PlayerMover : MonoBehaviour
 		{
 			IsMoving = false;
 			rb.velocity = new Vector2(0, rb.velocity.y);
-
-
+			if (!IsCrouching)
+			{
+				AnimationController.ChangeAnimation("Idle", _animator);
+			}
+			else
+			{
+				AnimationController.ChangeAnimation("Crouch", _animator);
+			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.LeftControl))
 		{
 			Crouch();
-			// тут приседание на месте
-
-			_animator.Play("Idle");
-
+			AnimationController.ChangeAnimation("Crouch", _animator);
 		}
 
 		if (Input.GetKeyUp(KeyCode.LeftControl))
@@ -87,6 +89,6 @@ public class PlayerMover : MonoBehaviour
 		IsCrouching = false;
 		_capsuleCollider.size = new Vector2(_capsuleCollider.size.x, _capsuleColliderSizeY);
 		_capsuleCollider.offset = new Vector2(_capsuleCollider.offset.x, _capsuleColliderOffsetY);
-
+		AnimationController.ChangeAnimation("Idle", _animator);
 	}
 }
