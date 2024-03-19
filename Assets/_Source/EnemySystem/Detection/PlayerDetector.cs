@@ -13,7 +13,7 @@ public class PlayerDetector : MonoBehaviour
     [SerializeField] private LayerMask obsMask;
     public  Action Fill;
     public  Action UnFill;
-    public  bool _canSeePlayer;
+    private  bool _canSeePlayer;
     public GameObject Player { get; private set; }
 
    
