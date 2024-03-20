@@ -161,9 +161,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1213268472}
     - target: {fileID: 626063058167726520, guid: e71939a85ad82d647aa3eeb0f6efb610, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartDualogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 626063058167726520, guid: e71939a85ad82d647aa3eeb0f6efb610, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 11400000, guid: 1aeb6a893cf8a37459e8407f22583560, type: 2}
+      objectReference: {fileID: 11400000, guid: 50ccbe1b7ae8ef749983acd8f0f76fdc, type: 2}
+    - target: {fileID: 626063058167726520, guid: e71939a85ad82d647aa3eeb0f6efb610, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: DialogueSequence, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2574441791166871163, guid: e71939a85ad82d647aa3eeb0f6efb610, type: 3}
       propertyPath: m_Camera
       value: 

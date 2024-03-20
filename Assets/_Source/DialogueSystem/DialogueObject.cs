@@ -1,10 +1,14 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Dialogue")]
-public class DialogueObject : ScriptableObject
+[System.Serializable]
+public class DialogueObject
 {
-    public string PersonName = "Name";
-    public List<Sprite> PersonAvatarAnimation;
+    [Header("Message")]
+    public string PersonName;
     public string[] Content;
+
+    [Header("Visual")]
+    public Sprite[] PersonAvatarSequence;
+    public Sprite LastFrame;
+    public DialogueEmotions Emotion;
 }
