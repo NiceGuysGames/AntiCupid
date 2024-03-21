@@ -378,8 +378,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1930277146}
   playerhid: {fileID: 1429662172}
-  isHiding: 0
-  hiddenLayer: Hiding
+  hiddenLayer: 
+  _newOrderOutLayer: 0
+  _newOrderInLayer: -1
 --- !u!212 &1429662171
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -644,7 +645,7 @@ Transform:
   m_GameObject: {fileID: 1930277146}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.34, y: -3, z: 0}
+  m_LocalPosition: {x: -5.91, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
