@@ -334,13 +334,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7421584001570352910}
     - target: {fileID: 1586713629269636093, guid: f4e4ade6aa59f574bbd2e525d0299ac9, type: 3}
+      propertyPath: _nameField
+      value: 
+      objectReference: {fileID: 7996845941400988223}
+    - target: {fileID: 1586713629269636093, guid: f4e4ade6aa59f574bbd2e525d0299ac9, type: 3}
+      propertyPath: _textSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586713629269636093, guid: f4e4ade6aa59f574bbd2e525d0299ac9, type: 3}
       propertyPath: PersonAvatar
       value: 
       objectReference: {fileID: 7169210011663280927}
     - target: {fileID: 1586713629269636093, guid: f4e4ade6aa59f574bbd2e525d0299ac9, type: 3}
+      propertyPath: _contentField
+      value: 
+      objectReference: {fileID: 7421584001570352910}
+    - target: {fileID: 1586713629269636093, guid: f4e4ade6aa59f574bbd2e525d0299ac9, type: 3}
       propertyPath: _dialogueBody
       value: 
       objectReference: {fileID: 11827187}
+    - target: {fileID: 1586713629269636093, guid: f4e4ade6aa59f574bbd2e525d0299ac9, type: 3}
+      propertyPath: _personAvatarField
+      value: 
+      objectReference: {fileID: 7169210011663280927}
     - target: {fileID: 4795399423951592164, guid: f4e4ade6aa59f574bbd2e525d0299ac9, type: 3}
       propertyPath: m_Name
       value: DialogueSystem

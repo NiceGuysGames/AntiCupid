@@ -15,17 +15,16 @@ public class DialogueSystem : MonoBehaviour
     
     private int _index;
     private DialogueObject _dialogue;
-    private bool _isPlaying;
+    private bool _isComplete;
 
     private void Update()
     {
         CheckActivate();
-        Debug.Log(_isPlaying);
     }
 
     public void StartOnce(DialogueObject dialogue)
     {
-        _isPlaying = true;
+        _isComplete = false;
         _dialogue = dialogue;
         _index = 0;
         _contentField.text = string.Empty;
@@ -45,8 +44,7 @@ public class DialogueSystem : MonoBehaviour
         foreach (DialogueObject dialogue in sequence.DialogueObjects)
         {
             StartOnce(dialogue);
-            yield return new WaitWhile(() => _isPlaying);
-            yield return new WaitWhile(() => !_isPlaying); // TODO: Продолжить работу
+            yield return new WaitUntil(() => _isComplete);
         }
     }
 
@@ -87,7 +85,11 @@ public class DialogueSystem : MonoBehaviour
                 i = 0;
             }
 
-            _personAvatarField.sprite = _dialogue.PersonAvatarSequence[i++];
+            if (c == ' ')
+            {
+                _personAvatarField.sprite = _dialogue.PersonAvatarSequence[i++];
+            }
+
             yield return new WaitForSeconds(_textSpeed);
         }
     }
@@ -104,7 +106,7 @@ public class DialogueSystem : MonoBehaviour
         {
             _dialogue = null;
             _dialogueBody.SetActive(false);
-            _isPlaying = false;
+            _isComplete = true;
         }
     }
 }
