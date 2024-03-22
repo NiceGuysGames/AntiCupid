@@ -18,6 +18,7 @@ public class DialogueSystem : MonoBehaviour
     private int _index;
     private DialogueObject _dialogue;
     private bool _isComplete;
+    private bool _stopTyping;
 
     private void Update()
     {
@@ -68,9 +69,10 @@ public class DialogueSystem : MonoBehaviour
         }
         else
         {
-            StopAllCoroutines();
             _contentField.text = _dialogue.Content[_index];
             _personAvatarField.sprite = _dialogue.LastFrame;
+            _stopTyping = true;
+            StopCoroutine(TypeLine());
         }
     }
     
@@ -80,6 +82,12 @@ public class DialogueSystem : MonoBehaviour
 
         foreach (char c in _dialogue.Content[_index].ToCharArray())
         {
+            if (_stopTyping)
+            {
+                _stopTyping = false;
+                yield break;
+            }
+
             _contentField.text += c;
 
             if (i > _dialogue.PersonAvatarSequence.Length - 1)
