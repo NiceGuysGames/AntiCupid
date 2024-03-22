@@ -12,6 +12,8 @@ public class DialogueSystem : MonoBehaviour
     [Header("Dialogue settings")]
     [SerializeField] private GameObject _dialogueBody;
     [SerializeField] private float _textSpeed;
+    [SerializeField] private AudioSource _textSound;
+    [SerializeField] private AudioClip _sound;
     
     private int _index;
     private DialogueObject _dialogue;
@@ -85,9 +87,10 @@ public class DialogueSystem : MonoBehaviour
                 i = 0;
             }
 
-            if (c == ' ')
+            if (c != ' ')
             {
                 _personAvatarField.sprite = _dialogue.PersonAvatarSequence[i++];
+                _textSound.PlayOneShot(_sound);
             }
 
             yield return new WaitForSeconds(_textSpeed);
