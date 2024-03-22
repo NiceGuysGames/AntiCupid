@@ -8,6 +8,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] private Image _personAvatarField;
     [SerializeField] private Text _nameField;
     [SerializeField] private Text _contentField;
+    [SerializeField] private GameObject _finishIndicator;
 
     [Header("Dialogue settings")]
     [SerializeField] private GameObject _dialogueBody;
@@ -34,6 +35,7 @@ public class DialogueSystem : MonoBehaviour
         _personAvatarField.sprite = _dialogue.PersonAvatarSequence[0];
         _nameField.text = _dialogue.PersonName;
         _dialogueBody.SetActive(true);
+        _finishIndicator.SetActive(false);
         StartCoroutine(TypeLine());
     }
 
@@ -72,6 +74,7 @@ public class DialogueSystem : MonoBehaviour
             _contentField.text = _dialogue.Content[_index];
             _personAvatarField.sprite = _dialogue.LastFrame;
             _stopTyping = true;
+            _finishIndicator.SetActive(true);
             StopCoroutine(TypeLine());
         }
     }
@@ -103,6 +106,8 @@ public class DialogueSystem : MonoBehaviour
 
             yield return new WaitForSeconds(_textSpeed);
         }
+
+        _finishIndicator.SetActive(true);
     }
     
     private void NextLine()
@@ -111,6 +116,7 @@ public class DialogueSystem : MonoBehaviour
         {
             _index++;
             _contentField.text = string.Empty;
+            _finishIndicator.SetActive(false);
             StartCoroutine(TypeLine());
         }
         else
