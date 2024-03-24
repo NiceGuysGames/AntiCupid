@@ -9,21 +9,28 @@ public class Hiding : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private Transform playerhid;
-    private bool isHiding = false;
+    private bool _isInTrigger = false;
     [SerializeField] private string hiddenLayer;
-    private bool HidScore = false;
-
-
+    private bool _isHiding = false;
+    [SerializeField] private int _newOrderOutLayer;
+    [SerializeField] private int _newOrderInLayer;
+    private SpriteRenderer _playerSpriteRenderer;
+    private void Start()
+    {
+        _playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
+    }
     private void Update()
     {
         PlayerHiding();
     }
+
+  
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (playerhid.gameObject.layer == playerhid.gameObject.layer)
         {
             Debug.Log("Player entered the trigger!");
-            isHiding = true;
+            _isInTrigger = true;
         }
     }
     private void OnTriggerExit2D(Collider2D playerl)
@@ -31,21 +38,22 @@ public class Hiding : MonoBehaviour
         if (playerhid.gameObject.layer == playerhid.gameObject.layer)
         {
             Debug.Log("Player exit the trigger!");
-            isHiding = false;
+            _isInTrigger = false;
         }
     }
 
     private void PlayerHiding()
-    {            
-        if (Input.GetKeyDown(KeyCode.E)&& isHiding)
+    {
+        
+        if (Input.GetKeyDown(KeyCode.E)&& _isInTrigger)
         {
-             if (!HidScore)
+             if (!_isHiding)
                     {
                         player.transform.position = playerhid.position;
-                        player.gameObject.layer = LayerMask.NameToLayer(hiddenLayer);
-                        
-                        HidScore = true;
-                Debug.Log("Player hid!");
+                        player.gameObject.layer = LayerMask.NameToLayer(hiddenLayer);                     
+                        _isHiding = true;
+                    _playerSpriteRenderer.sortingOrder = _newOrderInLayer;
+                    Debug.Log("Player hid!");
                     }
             else
             {
@@ -53,11 +61,12 @@ public class Hiding : MonoBehaviour
                 
                     player.transform.position = playerhid.position;
                     player.gameObject.layer = LayerMask.NameToLayer("Player");
-                    isHiding = false;
+                    _isInTrigger = true;
                     Debug.Log("Player exit!");
-                    HidScore = false;
+                    _isHiding = false;
+                    _playerSpriteRenderer.sortingOrder = _newOrderOutLayer;
 
-                
+
             }
         }
         
