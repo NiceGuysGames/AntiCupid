@@ -14,8 +14,11 @@ public class Hiding : MonoBehaviour
     private bool _isHiding = false;
     [SerializeField] private int _newOrderOutLayer;
     [SerializeField] private int _newOrderInLayer;
-
-
+    private SpriteRenderer _playerSpriteRenderer;
+    private void Start()
+    {
+        _playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
+    }
     private void Update()
     {
         PlayerHiding();
@@ -41,7 +44,7 @@ public class Hiding : MonoBehaviour
 
     private void PlayerHiding()
     {
-        SpriteRenderer playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
+        
         if (Input.GetKeyDown(KeyCode.E)&& _isInTrigger)
         {
              if (!_isHiding)
@@ -49,8 +52,8 @@ public class Hiding : MonoBehaviour
                         player.transform.position = playerhid.position;
                         player.gameObject.layer = LayerMask.NameToLayer(hiddenLayer);                     
                         _isHiding = true;
-                        playerSpriteRenderer.sortingOrder = _newOrderInLayer;
-                Debug.Log("Player hid!");
+                    _playerSpriteRenderer.sortingOrder = _newOrderInLayer;
+                    Debug.Log("Player hid!");
                     }
             else
             {
@@ -61,7 +64,7 @@ public class Hiding : MonoBehaviour
                     _isInTrigger = true;
                     Debug.Log("Player exit!");
                     _isHiding = false;
-                    playerSpriteRenderer.sortingOrder = _newOrderOutLayer;
+                    _playerSpriteRenderer.sortingOrder = _newOrderOutLayer;
 
 
             }
