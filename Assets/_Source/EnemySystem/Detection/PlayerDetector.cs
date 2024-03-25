@@ -39,17 +39,16 @@ public class PlayerDetector : MonoBehaviour
                 float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
                 if (!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obsMask))
+                {
                     SeePlayer(true, target.gameObject);
-                        
-                    
-                else
-                    SeePlayer(false);
-            }
-            else
-                SeePlayer(false);
+                    return;
+                }
 
+            }
         }
-        
+
+        SeePlayer(false);
+
     }
 
 

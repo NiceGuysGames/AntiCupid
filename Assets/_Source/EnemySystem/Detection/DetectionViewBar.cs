@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -38,9 +40,16 @@ public class DetectionViewBar : MonoBehaviour
             _end.Kill();
         }
         _start = healthBarImage.DOFillAmount(1, speedOfDetection)
-            .OnComplete(() => healthBarImage.color = Color.red);
+            .OnComplete(End);
 
     }
+
+    void End()
+    {
+        healthBarImage.color = Color.red;
+        TestLose.ActivatePanel();
+    }
+    
 
     private void UnFillingBar()
     {

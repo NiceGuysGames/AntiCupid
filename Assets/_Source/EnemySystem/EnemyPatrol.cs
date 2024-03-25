@@ -10,19 +10,24 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private List<Transform> destinationPoints;
     [SerializeField] private float timeOnStop;
     [SerializeField] private Enemy enemy;
+    [SerializeField] private PlayerDetector playerDetector;
+    [SerializeField] private FollowPlayer followPlayer;
     private EnemyMovement _enemyMovement;
     private int _currPoint;
     private bool _isOnStop;
+    private bool _detectedPlayer;
 
     private void Start()
     {
         _enemyMovement = new EnemyMovement(enemy.Rb);
         _currPoint = 0;
         _isOnStop = false;
+        _detectedPlayer = false;
     }
 
     private void Update()
     {
+        
         if (isPatrolling)
         {
             FindDistance();
@@ -38,7 +43,7 @@ public class EnemyPatrol : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isPatrolling)
+        if(isPatrolling && !playerDetector.Player )
             _enemyMovement.Move(enemy.Speed,destinationPoints[_currPoint],transform);
     }
 
