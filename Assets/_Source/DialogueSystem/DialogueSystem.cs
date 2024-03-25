@@ -46,6 +46,7 @@ public class DialogueSystem : MonoBehaviour
 
     public IEnumerator StartSequence(DialogueSequence sequence)
     {
+        Debug.Log("StartDialog");
         foreach (DialogueObject dialogue in sequence.DialogueObjects)
         {
             StartOnce(dialogue);
