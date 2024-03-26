@@ -30,15 +30,17 @@ public class Hiding : MonoBehaviour
   
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (playerhid.gameObject.layer == playerhid.gameObject.layer)
+        int layer = other.gameObject.layer;
+        if (layer == LayerMask.NameToLayer("Player"))
         {
             Debug.Log("Player entered the trigger!");
             _isInTrigger = true;
         }
     }
-    private void OnTriggerExit2D(Collider2D playerl)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (playerhid.gameObject.layer == playerhid.gameObject.layer)
+        int layer = other.gameObject.layer;
+        if (layer == LayerMask.NameToLayer("Player"))
         {
             Debug.Log("Player exit the trigger!");
             _isInTrigger = false;
