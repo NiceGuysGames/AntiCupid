@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DangerousPlace : MonoBehaviour, IInteractable
+public class DangerPlaceDemoBuild : MonoBehaviour
 {
     [field: SerializeField] public GameObject Player { get; set; }
     [SerializeField] private PlayerMover playerMover;
-
+    [SerializeField] private GameObject _noiseText;
+    
     private bool isTriggered = false;
     private void Start()
     {
+        _noiseText.SetActive(false);
         if (playerMover == null)
         {
             Debug.Log("Player Mover == null in " + gameObject.name);
@@ -23,6 +25,8 @@ public class DangerousPlace : MonoBehaviour, IInteractable
         {
             isTriggered = true;
             Debug.Log("Noise!\n Animation of DangerousPlace");
+            _noiseText.SetActive(true);
+            
 
         }
     }
@@ -33,7 +37,8 @@ public class DangerousPlace : MonoBehaviour, IInteractable
         {
             isTriggered = false;
             Debug.Log("Noise!ext\n Animation of DangerousPlace");
-
+            _noiseText.SetActive(false);
         }
-    }
+    } 
+   
 }

@@ -15,9 +15,12 @@ public class Hiding : MonoBehaviour
     [SerializeField] private int _newOrderOutLayer;
     [SerializeField] private int _newOrderInLayer;
     private SpriteRenderer _playerSpriteRenderer;
+    [SerializeField] private Rigidbody2D _rb;
+    
     private void Start()
     {
         _playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
+        
     }
     private void Update()
     {
@@ -54,7 +57,8 @@ public class Hiding : MonoBehaviour
                         _isHiding = true;
                     _playerSpriteRenderer.sortingOrder = _newOrderInLayer;
                     Debug.Log("Player hid!");
-                    }
+                _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
             else
             {
                 
@@ -65,7 +69,8 @@ public class Hiding : MonoBehaviour
                     Debug.Log("Player exit!");
                     _isHiding = false;
                     _playerSpriteRenderer.sortingOrder = _newOrderOutLayer;
-
+                _rb.constraints = RigidbodyConstraints2D.None;
+                _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             }
         }
